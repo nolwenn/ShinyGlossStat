@@ -1,0 +1,30 @@
+Creation le 11/07/2016 N. Le Meur
+Projet de glossaire stat au format Shiny app.
+Liste des concepts à développer
+
+************************
+- Description
+ - moyenne, median, mode (Nolwenn)
+ - variance, écart type, étendu, IQR
+
+- Visualisation des données
+ - scatter plot
+ - histogram (Pascal)
+ - box plot
+ - bar chart
+ - pie chart
+ - epidemic curve
+
+- Comparaison
+ - Tests moyenne
+ - Tests proportion
+ - Test normalité
+ - anova
+ - Test égalité des variances
+
+- Estimation
+  - intervalle de confiance
+  - taille d'échantillon
+
+- Modélisation
+  - regression linéaire
