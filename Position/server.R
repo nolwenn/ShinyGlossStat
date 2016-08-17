@@ -23,11 +23,11 @@ shinyServer(function(input, output) {
     x = round(anorexia$Prewt[1:input$n],0)
     getmode <- function(v) {
       w = table(v)
-      m= w[max(w)==w]
-      if(m==1) {return(NA)}
-      else{return(m)}
+      m = w[max(w)==w]
+      if(m == 1) {return(NA)}
+      else{return(as.numeric(names(m)))}
     }
-    c("Mean"= mean(x), "Median"= median(x), "Mode"=getmode(x))
+    c("Mean"= round(mean(x),2), "Median"= round(median(x),2), "Mode"=getmode(x))
   })
   
 })
