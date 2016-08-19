@@ -1,0 +1,110 @@
+---
+title: "Statitsics"
+author: "by EHESP"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+  orientation: rows
+  source: embed
+---
+  
+```{r setup, include=FALSE}
+library("shiny")
+library("flexdashboard")
+```
+
+```{r}
+library(MASS)
+library("ggplot2")
+library(plotly)
+
+## Subset of the ggplot2movies data set
+data(anorexia)
+colnames(anorexia) = c("Treatment", "Before", "After")
+theme_set(theme_bw())
+```
+
+Selections {.sidebar}
+===============================
+
+
+    
+  
+Describe
+===================================== 
+
+Row {.tabset .tabset-fade}
+------------------------------------
+### Location {data-width=300}
+
+Mean
+
+The mean of a data series is the sum of the values divided by the number of values in the data series.
+
+Median
+
+The median is the middle most value in a data series: 50% of the values are lower than the median and 50% are higher than the median.
+   
+Mode        
+
+The mode is the value that has the highest number of occurrences in a set of data. Unike mean and median, mode can have both numeric and character data.
+
+
+
+```{r}
+## The shiny part
+    sliderInput("n", 
+              "Select a number of observation to display:", 
+              value = 10,
+              min = 1, 
+              max = 72)
+```
+
+
+```{r}
+renderPlotly({
+  ds <-c("mean"=mean(anorexia$Before), "median"=median(anorexia$Before))
+  ggplot(anorexia[1:input$n,], aes(x = 1:length(Before), y = Before)) +
+    labs(title = "", x = "Individuals", y = "Weight (lbs)") +
+    geom_point() + 
+    geom_hline(aes(yintercept=mean(anorexia$Before[1:input$n]), colour="mean")) +
+    geom_hline(aes(yintercept=median(anorexia$Before[1:input$n]), colour="median"))
+   #ggplotly(g)
+})
+```
+
+Anorexia dataset: weight of 72 young female anorexia patients.
+
+
+### Dispersion
+
+
+
+Visualize
+===================================== 
+  
+  Column {.tabset .tabset-fade}
+-------------------------------------
+
+
+Compare
+===================================== 
+  
+  Column {.tabset .tabset-fade}
+-------------------------------------
+
+
+Estimate
+===================================== 
+  
+  Column {.tabset .tabset-fade}
+-------------------------------------
+
+
+Model
+===================================== 
+  
+  Column {.tabset .tabset-fade}
+-------------------------------------
+
+
